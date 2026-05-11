@@ -1,7 +1,10 @@
 package com.example
 
-import com.lagradost.cloudstream3.*
-import com.lagradost.cloudstream3.utils.ExtractorLink
+import com.lagradost.cloudstream3.MainAPI
+import com.lagradost.cloudstream3.TvType
+import com.lagradost.cloudstream3.SearchResponse
+import com.lagradost.cloudstream3.app
+import com.lagradost.cloudstream3.newMovieSearchResponse
 import org.jsoup.Jsoup
 
 class FilmpalastProvider : MainAPI() {
