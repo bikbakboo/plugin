@@ -3,18 +3,14 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.3.2")
 }
 
-// Höhere Version, damit CloudStream merkt, dass es ein Update gab
 version = 1
 
 cloudstream {
-    // Der Name des Plugins, wie er in der App angezeigt wird
-    name = "Filmpalast"
+    // Hier lag der Fehler: 'name' muss ohne Gleichheitszeichen oder als 'pluginName' geschrieben werden
+    pluginName = "Filmpalast" 
     description = "Filmpalast Provider für CloudStream"
     authors = listOf("bikbakboo")
 
-    /**
-    * Status int: 1 = Ok
-    **/
     status = 1 
 
     tvTypes = listOf("Movie", "TvSeries")
@@ -22,7 +18,6 @@ cloudstream {
     requiresResources = true
     language = "de"
 
-    // Optional: Ein Logo-Link
     iconUrl = "https://upload.wikimedia.org/wikipedia/commons/2/2f/Korduene_Logo.png"
 }
 
