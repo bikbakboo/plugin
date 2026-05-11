@@ -7,7 +7,6 @@ import android.content.Context
 @CloudstreamPlugin
 class ExamplePlugin: Plugin() {
     override fun load(context: Context) {
-        // Hier muss exakt der Name deiner neuen Klasse stehen!
         registerMainAPI(FilmpalastProvider())
     }
 }
