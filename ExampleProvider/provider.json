@@ -1,0 +1,8 @@
+{
+    "name": "Filmpalast",
+    "className": "FilmpalastProvider",
+    "description": "Filmpalast Provider für CloudStream",
+    "language": "de",
+    "tvTypes": ["Movie", "TvSeries"],
+    "authors": ["bikbakboo"]
+}
