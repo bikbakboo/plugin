@@ -1,8 +1,8 @@
 package com.example
 
 import com.lagradost.cloudstream3.MainAPI
-import com.lagradost.cloudstream3.TvType
 import com.lagradost.cloudstream3.SearchResponse
+import com.lagradost.cloudstream3.TvType
 
 class FilmpalastProvider : MainAPI() {
     override var mainUrl = "https://filmpalast.to"
