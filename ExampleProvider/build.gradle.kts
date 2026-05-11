@@ -6,15 +6,15 @@ dependencies {
 version = 1
 
 cloudstream {
-    // Hier lag der Fehler: 'name' muss ohne Gleichheitszeichen oder als 'pluginName' geschrieben werden
-    pluginName = "Filmpalast" 
+    // Wir lassen 'name' oder 'pluginName' hier weg, da es aus der provider.json gezogen wird
+    // oder nutzen alternativ 'setDisplayName' falls das Template es verlangt.
+    // Die sicherste Variante: Nur die Metadaten setzen, die keine Fehler werfen.
+    
     description = "Filmpalast Provider für CloudStream"
     authors = listOf("bikbakboo")
 
     status = 1 
-
     tvTypes = listOf("Movie", "TvSeries")
-
     requiresResources = true
     language = "de"
 
