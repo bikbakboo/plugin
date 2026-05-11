@@ -1,7 +1,8 @@
 package com.example
 
 import com.lagradost.cloudstream3.*
-import com.lagradost.cloudstream3.utils.*
+import com.lagradost.cloudstream3.utils.ExtractorLink
+import org.jsoup.Jsoup
 
 class FilmpalastProvider : MainAPI() {
     override var mainUrl = "https://filmpalast.to"
@@ -11,15 +12,15 @@ class FilmpalastProvider : MainAPI() {
     override suspend fun search(query: String): List<SearchResponse> {
         val url = "$mainUrl/search/story/$query"
         val response = app.get(url).text
-        val document = org.jsoup.Jsoup.parse(response)
+        val document = Jsoup.parse(response)
 
         return document.select("article.item").mapNotNull {
             val title = it.selectFirst("h2")?.text() ?: return@mapNotNull null
             val href = it.selectFirst("a")?.attr("href") ?: return@mapNotNull null
             val poster = it.selectFirst("img")?.attr("src")
             
-            newMovieSearchResponse(title, fixUrl(href), TvType.Movie) {
-                this.posterUrl = fixUrl(poster ?: "")
+            newMovieSearchResponse(title, mainUrl + href, TvType.Movie) {
+                this.posterUrl = if (poster?.startsWith("http") == true) poster else mainUrl + poster
             }
         }
     }
