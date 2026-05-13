@@ -7,15 +7,15 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-        // Shitpack repo which contains our tools and dependencies
+        // Jitpack für Tools und Abhängigkeiten
         maven("https://jitpack.io")
     }
 
     dependencies {
         classpath("com.android.tools.build:gradle:8.7.3")
-        // Cloudstream gradle plugin which makes everything work and builds plugins
+        // Cloudstream Plugin für den Build-Prozess
         classpath("com.github.recloudstream:gradle:-SNAPSHOT")
-        // Kotlin Version auf 2.1.10 aktualisiert, um Metadaten-Fehler zu beheben
+        // Erhöht auf 2.1.10, um die Inkompatibilität der Metadaten (2.3.0) zu lösen
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.1.10")
     }
 }
@@ -38,7 +38,7 @@ subprojects {
     apply(plugin = "com.lagradost.cloudstream3.gradle")
 
     cloudstream {
-        // when running through github workflow, GITHUB_REPOSITORY should contain current repository name
+        // Setzt das Repository automatisch für den GitHub Workflow
         setRepo(System.getenv("GITHUB_REPOSITORY") ?: "user/repo")
     }
 
@@ -52,14 +52,14 @@ subprojects {
         }
 
         compileOptions {
-            // Auf Java 17 angehoben für bessere Kompatibilität
+            // Java 17 ist für neuere Kotlin-Versionen erforderlich
             sourceCompatibility = JavaVersion.VERSION_17
             targetCompatibility = JavaVersion.VERSION_17
         }
 
         tasks.withType<KotlinJvmCompile> {
             compilerOptions {
-                // JVM Target auf 17 gesetzt
+                // JVM Target auf 17 für volle Kompatibilität
                 jvmTarget.set(JvmTarget.JVM_17) 
                 freeCompilerArgs.addAll(
                     "-Xno-call-assertions",
@@ -74,14 +74,14 @@ subprojects {
         val cloudstream by configurations
         val implementation by configurations
 
-        // Stubs for all cloudstream classes
+        // Stubs für Cloudstream Klassen
         cloudstream("com.lagradost:cloudstream3:pre-release")
 
         implementation(kotlin("stdlib")) 
         implementation("com.github.Blatzar:NiceHttp:0.4.11") 
         implementation("org.jsoup:jsoup:1.18.3") 
         
-        // WICHTIG: Jackson nicht über 2.13.1 heben
+        // WICHTIG: Jackson bei 2.13.1 belassen für Abwärtskompatibilität
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.1") 
     }
 }
